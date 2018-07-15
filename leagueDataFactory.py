@@ -6,7 +6,7 @@ class leagueDataFactory():
     def __init__(self,
                  current_week=1,
                  mongo_client='bth84',
-                 mongo_pw='ch!M3R42',
+                 mongo_pw='ch!m3R42',
                  mongo_path='cluster0-shard-00-00-rafzz.mongodb.net:27017,cluster0-shard-00-01-rafzz.mongodb.net:27017,cluster0-shard-00-02-rafzz.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
                  ):
         def getGameList():
