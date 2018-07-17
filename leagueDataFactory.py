@@ -1,21 +1,24 @@
 import pymongo
 
 
-class leagueDataFactory():
+class LeagueDataFactory:
 
     def __init__(self,
                  current_week=1,
                  mongo_client='bth84',
-                 mongo_pw='ch!m3R42',
-                 mongo_path='cluster0-shard-00-00-rafzz.mongodb.net:27017,cluster0-shard-00-01-rafzz.mongodb.net:27017,cluster0-shard-00-02-rafzz.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
+                 mongo_pw='ch!M3R42',
+                 mongo_path='cluster0-shard-00-00-rafzz.mongodb.net:27017, \
+                            cluster0-shard-00-01-rafzz.mongodb.net:27017,  \
+                            cluster0-shard-00-02-rafzz.mongodb.net:27017/  \
+                            test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin'
                  ):
-        def getGameList():
+        def get_game_list():
             cursor = self.games.aggregate([
                 {"$group": {"_id": "$gameId"}}
             ])
             return set(map(lambda x: x['_id'], list(cursor)))
 
-        def getMatchList():
+        def get_match_list():
             with open('./SummerSplit.txt', 'r') as f:
                 match_list = set(f.read().split(',\n'))
 
@@ -29,6 +32,6 @@ class leagueDataFactory():
         self.client = pymongo.MongoClient(self.mongo_str)
         self.db = self.client.test
         self.games = self.db.get_collection("games")
-        self.gameList = getGameList()  # returns a set
-        self.matchList = getMatchList()  # returns a set
+        self.gameList = get_game_list()  # returns a set
+        self.matchList = get_match_list()  # returns a set
         self.listToImport = list(self.matchList - self.gameList)
