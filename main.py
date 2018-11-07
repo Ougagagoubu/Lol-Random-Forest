@@ -1,7 +1,4 @@
-import numpy as np
+import DataAggregation
+import ProvideData
 
-print('hello world')
-
-print('irgendwas neues')
-
-blabla
+ProvideData.ProvideData.provide_data_by_textfile(1)
