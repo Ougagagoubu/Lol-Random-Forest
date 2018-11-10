@@ -28,7 +28,7 @@ class DataAggregation:
         self.games = self.db.get_collection("games")
         self.gameList = get_game_list()  # returns a set
 
-        #eine kleine Änderung
+        #eine kleine Änderung hallo
 
 class ProvideData:
     ### Input of Data 
