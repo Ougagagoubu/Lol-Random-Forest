@@ -28,6 +28,8 @@ class DataAggregation:
         self.games = self.db.get_collection("games")
         self.gameList = get_game_list()  # returns a set
 
+        #eine kleine Änderung
+
 class ProvideData:
     ### Input of Data 
     def __init__(self,
