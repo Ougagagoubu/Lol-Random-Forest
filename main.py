@@ -1,4 +1,3 @@
-import DataAggregation
-import ProvideData
+import DataHub
 
-ProvideData.ProvideData.provide_data_by_textfile(1)
+league_data = DataHub.ProvideData()             # create useable obj

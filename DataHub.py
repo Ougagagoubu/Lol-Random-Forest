@@ -1,9 +1,11 @@
 import pymongo
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
 
 class DataAggregation:
-
-    print('Importing DataAggregation...')
-
+    ### creates a mongo database to store data
+    ### few functions to work and aggregate data
+    ### TODO: seperate DB from functions to work with data?
     def __init__(self,
                  mongo_client='bth84',
                  mongo_pw='ch!M3R42',
@@ -16,14 +18,7 @@ class DataAggregation:
             cursor = self.games.aggregate([
                 {"$group": {"_id": "$gameId"}}
             ])
-            return set(map(lambda x: x['_id'], list(cursor)))
-
-        def get_match_list():
-            with open('./SummerSplit.txt', 'r') as f:
-                match_list = set(f.read().split(',\n'))
-
-            match_list = set(map(lambda x: int(x.split('?')[0].split('/')[-1]), match_list))
-            return match_list
+            return set(map(lambda x: x['_id'], list(cursor)))            
 
         self.mongo_str = 'mongodb://' + mongo_client + ':' + mongo_pw + '@' + mongo_path
 
@@ -32,5 +27,18 @@ class DataAggregation:
         self.db = self.client.test
         self.games = self.db.get_collection("games")
         self.gameList = get_game_list()  # returns a set
-        self.matchList = get_match_list()  # returns a set
-        self.listToImport = list(self.matchList - self.gameList)
+
+class ProvideData:
+    ### Input of Data 
+    def __init__(self,
+                 filename=askopenfilename(),
+                ):
+
+        with open(filename, 'r') as f:
+            match_list = set(f.read().split(',\n'))        
+
+        def get_gameid_list(self, match_list):
+            return set(map(lambda x: int(x.split('?')[0].split('/')[-1]), match_list))
+            
+        def open_file(self):
+            pass
